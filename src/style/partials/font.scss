@@ -1,0 +1,51 @@
+// =============================================================================
+// Font Face
+// =============================================================================
+
+@mixin font-face($name, $path, $weight: null, $style: null, $exts: eot ttf) {
+    $src: null;
+  
+    $extmods: (
+            eot: "?"
+    );
+  
+    $formats: (
+            otf: "opentype",
+            ttf: "truetype"
+    );
+  
+    @each $ext in $exts {
+      $extmod: if(map-has-key($extmods, $ext), $ext + map-get($extmods, $ext), $ext);
+      $format: if(map-has-key($formats, $ext), map-get($formats, $ext), $ext);
+      $src: append($src, url(quote($path + "." + $extmod)) format(quote($format)), comma);
+    }
+  
+    @font-face {
+      font-family: quote($name);
+      font-style: $style;
+      font-weight: $weight;
+      src: $src;
+    }
+  }
+  //Hero
+@include font-face(Hero-Bold, "../fonts/Hero-Bold");
+@include font-face(Hero-Light, "../fonts/Hero-Light");
+@include font-face(Hero-Regular, "../fonts/Hero-Regular");
+@include font-face(Montserrat-Black, '../fonts/Montserrat-Black');//900
+@include font-face(Montserrat-BlackItalic, '../fonts/Montserrat-BlackItalic');
+@include font-face(Montserrat-Bold, '../fonts/Montserrat-Bold');//700
+@include font-face(Montserrat-BoldItalic, '../fonts/Montserrat-BoldItalic');
+@include font-face(Montserrat-ExtraBold, '../fonts/Montserrat-ExtraBold');//800
+@include font-face(Montserrat-ExtraBoldItalic, '../fonts/Montserrat-ExtraBoldItalic');
+@include font-face(Montserrat-ExtraLight, '../fonts/Montserrat-ExtraLight');
+@include font-face(Montserrat-ExtraLightItalic, '../fonts/Montserrat-ExtraLightItalic');
+@include font-face(Montserrat-Italic, '../fonts/Montserrat-Italic');
+@include font-face(Montserrat-Light, '../fonts/Montserrat-Light');//300
+@include font-face(Montserrat-LightItalic, '../fonts/Montserrat-LightItalic');
+@include font-face(Montserrat-Medium, '../fonts/Montserrat-Medium');//500
+@include font-face(Montserrat-MediumItalic, '../fonts/Montserrat-MediumItalic');
+@include font-face(Montserrat-Regular, '../fonts/Montserrat-Regular');//400
+@include font-face(Montserrat-SemiBold, '../fonts/Montserrat-SemiBold');//600
+@include font-face(Montserrat-SemiBoldItalic, '../fonts/Montserrat-SemiBoldItalic');
+@include font-face(Montserrat-Thin, '../fonts/Montserrat-Thin');//100
+@include font-face(Montserrat-ThinItalic, '../fonts/Montserrat-ThinItalic');
